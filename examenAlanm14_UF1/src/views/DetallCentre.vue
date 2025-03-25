@@ -1,7 +1,8 @@
 <template>
     <div class="detall-centre">
       <div v-if="loading">Carregant dades...</div>
-  
+
+      <!-- Només mostrara l'error -->
       <div v-else-if="error">Error: {{ error }}</div>
   
       <div v-else>
@@ -48,7 +49,7 @@ detall-centre {
     padding: 20px;
   }
 
-  
+
 
   </style>
   
