@@ -7,27 +7,21 @@ const routes = [
     component: () => import('../views/HomeView.vue') 
   },
   { 
-    path: '/pagina1', 
-    name: 'pagina1', 
-    component: () => import('../views/PaginaUn.vue') 
+    path: '/beques', 
+    name: 'beques', 
+    component: () => import('../views/BequesView.vue') 
   },
   {
-    path: '/pagina2',
-    name: 'pagina2',
-    component: () => import('../views/PaginaDigues.vue'),
+    path: '/beques/:any',
+    name: 'centres',
+    component: () => import('../views/CentresView.vue'),
     props: true
   },
   { 
-    path: '/pagina3', 
-    name: 'pagina3', 
-    component: () => import('../views/PaginaTres.vue') 
-
-  },
-  {
-    path: '/estacio/:station',
-    name: 'estacio',
-    component: () => import('../views/StationView.vue'),
-    props: (route) => ({ stationName: route.params.station })
+    path: '/beques/:any/:centre', 
+    name: 'detall-centre', 
+    component: () => import('../views/DetallCentre.vue'),
+    props: true
   }
 ]
 

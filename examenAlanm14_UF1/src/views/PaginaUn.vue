@@ -1,6 +1,0 @@
-<template>
-    <h1>Pàgina 1</h1>
-</template>
-
-<script setup>
-</script>
