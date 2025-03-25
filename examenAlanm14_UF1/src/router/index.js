@@ -15,14 +15,14 @@ const routes = [
     path: '/beques/:any',
     name: 'centres',
     component: () => import('../views/CentresView.vue'),
-    props: true
+    props: (router) => ({ any: router.params.any })
   },
-  { 
-    path: '/beques/:any/:centre', 
-    name: 'detall-centre', 
+  {
+    path: '/beques/:any/:tipus_de_centre',
+    name: 'detall-centre',
     component: () => import('../views/DetallCentre.vue'),
-    props: true
-  }
+    props: (router) => ({ any: router.params.any, tipus_de_centre: router.params.tipus_de_centre })
+  }  
 ]
 
 const router = createRouter({

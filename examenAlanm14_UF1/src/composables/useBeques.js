@@ -26,14 +26,16 @@ export function useBeques() {
     centres.value = []
     error.value = null
     try {
-      const response = await axios.get(`https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json?any=${anySeleccionat}`)
-      centres.value = [...new Set(response.data.map(item => item.centre))].sort()
+      const response = await axios.get(`https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json?$where=any='${anySeleccionat}'`)
+      centres.value = [...new Set(response.data.map(item => item.tipus_de_centres))].sort()
     } catch (e) {
       error.value = e
     } finally {
       loading.value = false
     }
   }
+  
+  
 
   return { anys, centres, loading, error, getAnys, getCentresPerAny }
 }

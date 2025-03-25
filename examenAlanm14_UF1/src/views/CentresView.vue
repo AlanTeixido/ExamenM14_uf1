@@ -9,7 +9,7 @@
         <li v-for="centre in centres" :key="centre">
           <RouterLink :to="`/beques/${any}/${encodeURIComponent(centre)}`">{{ centre }}</RouterLink>
         </li>
-      </ul>
+      </ul>      
     </div>
   </template>
   
