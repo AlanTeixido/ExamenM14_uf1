@@ -1,18 +1,23 @@
 <template>
     <div class="detall-centre">
 
-        
-      <h1>Informe sobre Beques i Mobilitat a {{ tipus_de_centre }}</h1>
+    <div v-if="loading">Carregant dades...</div>
 
+    <div v-if="error">Error: {{ error.message }}</div>
 
-      <h2>Any: {{ any }}</h2>
-  
-      <ul v-if="dades">
-        <li><strong>Beques Dones:</strong> {{ dades.formaci_dones }} ({{ percentatge(dades.formaci_dones, dades.formaci_homes) }}%)</li>
-        <li><strong>Beques Homes:</strong> {{ dades.formaci_homes }} ({{ percentatge(dades.formaci_homes, dades.formaci_dones) }}%)</li>
-        <li><strong>Mobilitat Dones:</strong> {{ dades.mobilitat_dones }} ({{ percentatge(dades.mobilitat_dones, dades.mobilitat_homes) }}%)</li>
-        <li><strong>Mobilitat Homes:</strong> {{ dades.mobilitat_homes }} ({{ percentatge(dades.mobilitat_homes, dades.mobilitat_dones) }}%)</li>
-      </ul>
+    <div v-else >
+        <h1>Informe sobre Beques i Mobilitat a {{ tipus_de_centre }}</h1>
+
+        <h2>Any: {{ any }}</h2>
+    
+        <ul v-if="dades">
+          <li><strong>Beques Dones:</strong> {{ dades.formaci_dones }} ({{ percentatge(dades.formaci_dones, dades.formaci_homes) }}%)</li>
+          <li><strong>Beques Homes:</strong> {{ dades.formaci_homes }} ({{ percentatge(dades.formaci_homes, dades.formaci_dones) }}%)</li>
+          <li><strong>Mobilitat Dones:</strong> {{ dades.mobilitat_dones }} ({{ percentatge(dades.mobilitat_dones, dades.mobilitat_homes) }}%)</li>
+          <li><strong>Mobilitat Homes:</strong> {{ dades.mobilitat_homes }} ({{ percentatge(dades.mobilitat_homes, dades.mobilitat_dones) }}%)</li>
+        </ul>
+    </div>
+
   
       <button @click="$router.back()">Tornar</button>
     </div>

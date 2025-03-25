@@ -16,10 +16,13 @@ export function useDetallCentre(any, tipus_de_centre) {
         `https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json?$where=any='${any.value}' AND tipus_de_centres='${tipus_de_centre.value}'`
       )
       dades.value = response.data[0] 
-    } catch (e) {
-      error.value = e
-    } finally {
-      loading.value = false
+    } catch (error){ // En cas d'error
+        if (error.response) {
+            error.value = error.response.data // Error de la API
+        } else {
+            error.value = error.message // Error de connexió
+    }    } finally {
+      loading.value = false 
     }
   }
 
