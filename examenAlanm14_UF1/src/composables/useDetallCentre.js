@@ -2,33 +2,38 @@ import { ref, watchEffect } from 'vue'
 import axios from 'axios'
 
 export function useDetallCentre(any, tipus_de_centre) {
-  const dades = ref(null) // Dades del centre
-  const loading = ref(false) // Indica si estem carregant dades
-  const error = ref(null) // Error en cas de que hi hagi
+  const dades = ref(null)
+  const loading = ref(false)
+  const error = ref(null)
 
-  // Funció per obtenir les dades del centre
   const getDadesDetall = async () => {
     loading.value = true
     dades.value = null
     error.value = null
     try {
-      const response = await axios.get(
-        `https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json?$where=any='${any.value}' AND tipus_de_centres='${tipus_de_centre.value}'`
-      )
-      dades.value = response.data[0] 
-    } catch (error){ // En cas d'error
-        if (error.response) {
-            error.value = error.response.data // Error de la API
-        } else {
-            error.value = error.message // Error de connexió
-    }    } finally {
-      loading.value = false 
+      const query = `$where=any='${encodeURIComponent(any.value)}' AND tipus_de_centres='${encodeURIComponent(tipus_de_centre.value)}'`
+      
+      const response = await axios.get(`https://analisi.transparenciacatalunya.cat/resource/rsgi-8ymj.json?${query}`)
+      
+      if (response.data.length > 0) {
+        dades.value = response.data[0]
+      } else {
+        error.value = 'No hi ha dades disponibles per aquest centre i any.'
+      }
+
+    } catch (err) {
+      if (err.response && err.response.data) {
+        error.value = err.response.data.message || 'Error desconegut de l\'API.'
+      } else {
+        error.value = err.message || 'Error desconegut en la petició.'
+      }
+    } finally {
+      loading.value = false
     }
   }
 
-  // Cada vegada que canvia any o tipus_de_centre, cridem a getDadesDetall
   watchEffect(() => {
-    if (any.value && tipus_de_centre.value) { // Si any i tipus_de_centre tenen valor
+    if (any.value && tipus_de_centre.value) {
       getDadesDetall()
     }
   })
