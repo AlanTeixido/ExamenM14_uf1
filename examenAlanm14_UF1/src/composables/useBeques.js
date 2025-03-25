@@ -2,13 +2,14 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 export function useBeques() {
-  const anys = ref([])
-  const centres = ref([])
-  const loading = ref(false)
-  const error = ref(null)
+  const anys = ref([]) // Array amb els anys
+  const centres = ref([]) // Array amb els tipus de centres
+  const loading = ref(false) // Indica si estem carregant dades
+  const error = ref(null) // Error en cas de que hi hagi
 
+  // Funció per obtenir els anys
   const getAnys = async () => {
-    loading.value = true
+    loading.value = true 
     anys.value = []
     error.value = null
     try {
@@ -21,6 +22,7 @@ export function useBeques() {
     }
   }
 
+    // Funció per obtenir els centres per un any seleccionat
   const getCentresPerAny = async (anySeleccionat) => {
     loading.value = true
     centres.value = []

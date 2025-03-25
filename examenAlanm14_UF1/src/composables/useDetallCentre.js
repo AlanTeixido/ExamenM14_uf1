@@ -2,10 +2,11 @@ import { ref, watchEffect } from 'vue'
 import axios from 'axios'
 
 export function useDetallCentre(any, tipus_de_centre) {
-  const dades = ref(null)
-  const loading = ref(false)
-  const error = ref(null)
+  const dades = ref(null) // Dades del centre
+  const loading = ref(false) // Indica si estem carregant dades
+  const error = ref(null) // Error en cas de que hi hagi
 
+  // Funció per obtenir les dades del centre
   const getDadesDetall = async () => {
     loading.value = true
     dades.value = null
@@ -22,8 +23,9 @@ export function useDetallCentre(any, tipus_de_centre) {
     }
   }
 
+  // Cada vegada que canvia any o tipus_de_centre, cridem a getDadesDetall
   watchEffect(() => {
-    if (any.value && tipus_de_centre.value) {
+    if (any.value && tipus_de_centre.value) { // Si any i tipus_de_centre tenen valor
       getDadesDetall()
     }
   })
