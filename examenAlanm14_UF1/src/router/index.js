@@ -12,7 +12,7 @@ const routes = [
     component: () => import('../views/PaginaUn.vue') 
   },
   {
-    path: '/pagina2/:id',
+    path: '/pagina2',
     name: 'pagina2',
     component: () => import('../views/PaginaDigues.vue'),
     props: true
