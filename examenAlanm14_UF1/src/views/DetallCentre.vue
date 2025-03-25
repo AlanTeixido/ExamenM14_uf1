@@ -1,5 +1,7 @@
 <template>
     <div class="detall-centre">
+
+        
       <h1>Informe sobre Beques i Mobilitat a {{ tipus_de_centre }}</h1>
 
 
