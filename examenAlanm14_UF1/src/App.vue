@@ -9,4 +9,15 @@
 </template>
 
 <script setup>
+
+// buit
+
 </script>
+
+<style scoped>
+nav {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+</style>
